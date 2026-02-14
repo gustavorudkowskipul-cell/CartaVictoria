@@ -35,12 +35,12 @@
     h1{font-size:34px;margin:18px 0 8px;}
     .sub{color:var(--muted);margin:0 0 18px;line-height:1.5}
     .muted{color:var(--muted)}
-    .letter{line-height:1.95;font-size:16.5px;}
+    .letter{line-height:1.98;font-size:16.7px;}
     .letter p{margin:12px 0;}
     .divider{height:1px;background:rgba(255,255,255,.12);margin:16px 0;}
     .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
     button{
-      cursor:pointer;border:0;border-radius:12px;padding:11px 14px;font-weight:700;
+      cursor:pointer;border:0;border-radius:12px;padding:11px 14px;font-weight:800;
       background: rgba(255,255,255,.10); color:var(--txt);
       border:1px solid rgba(255,255,255,.14);
     }
@@ -71,7 +71,7 @@
     /* Efeito "carta abrindo" */
     .reveal{
       transform-origin: top center;
-      animation: openLetter .9s cubic-bezier(.2,.9,.2,1) forwards;
+      animation: openLetter .95s cubic-bezier(.2,.9,.2,1) forwards;
     }
     @keyframes openLetter{
       0%{opacity:0; transform: translateY(18px) scale(.96) rotateX(18deg); filter: blur(2px);}
@@ -94,7 +94,7 @@
     .center{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;}
     .yes{font-size:18px;padding:12px 18px}
 
-    /* ===== Corações subindo no fundo ===== */
+    /* ===== Corações no fundo ===== */
     .heart-float{
       position:fixed; left:0; top:0;
       font-size:18px; pointer-events:none; opacity:.9; z-index:5;
@@ -119,7 +119,7 @@
         <h1>Pra Victoria <span class="heart">💌</span></h1>
         <p class="sub">
           Digite a senha pra abrir a carta.<br/>
-          <span class="muted">Dica: eu fiz isso pensando em você de verdade.</span>
+          <span class="muted">Prometo que vale a pena ler até o final.</span>
         </p>
 
         <div class="field" id="field">
@@ -135,102 +135,103 @@
   <!-- CONTEÚDO -->
   <div class="hidden" id="content">
     <div class="wrap">
-      <div class="badge"><span class="dot"></span> Valentine’s Day • feito pra você</div>
+      <div class="badge"><span class="dot"></span> Feito pra você • com coragem</div>
       <h1>Victoria <span class="heart">💌</span></h1>
-      <p class="sub">Lê com calma. Eu queria que isso tivesse a sua cara.</p>
+      <p class="sub">Lê devagar. Eu coloquei verdade aqui dentro.</p>
 
       <section class="card reveal" id="letterCard">
-        <p class="muted" id="counter" style="margin:0 0 10px; font-weight:700;"></p>
+        <p class="muted" id="counter" style="margin:0 0 10px; font-weight:800;"></p>
         <div class="divider"></div>
 
         <div class="letter">
           <p><strong>Victoria,</strong></p>
 
           <p>
-            Eu fiquei tentando escolher um começo bonito pra isso… mas o começo mais verdadeiro é admitir
-            que eu não escrevi essa carta porque “hoje é uma data especial”. Eu escrevi porque <strong>você</strong> virou especial.
-            E eu cansei de fingir que dá pra guardar isso só pra mim.
+            Eu fiquei tentando começar isso de um jeito bonito… mas eu não quero só bonito.
+            Eu quero verdadeiro. Eu quero inteiro. Eu quero que você sinta o peso bom do que eu tô dizendo.
+            Então aqui vai: <strong>eu não consigo mais fingir que você é “só” alguém que eu gosto</strong>.
+            Você virou um lugar dentro de mim.
           </p>
 
           <p>
-            A gente se conhece do colégio — e mesmo assim é como se eu tivesse te descoberto agora.
-            E é impossível eu não rir lembrando do gatilho oficial de tudo:
+            A gente se conhece do colégio… e mesmo assim eu sinto como se eu tivesse te encontrado agora,
+            na fase em que a vida já não é brincadeira e a gente aprende a reconhecer o que é raro.
+            E é engraçado, porque o nosso “agora” começou de um jeito completamente aleatório:
             aquele seu story falando de <strong>óleo de cozinha pra passar no rosto</strong> KKKKK.
-            Eu respondi no impulso, mas a verdade é que, naquele momento, alguma coisa em mim pensou:
-            “pronto… é ela”.
+            Eu reagi no impulso, mas a verdade é que naquele momento eu senti uma coisa simples e forte:
+            “eu quero estar perto dela”.
           </p>
 
           <p>
-            Desde então, você foi virando presença constante.
-            Você virou aquela conversa que eu espero, aquele “bom dia” que muda o meu humor,
-            aquele tipo de pessoa que traz paz e ao mesmo tempo deixa o coração acelerado.
-            E é muito doido como o simples fato de ver seu nome já faz meu dia ficar diferente.
+            E depois disso você foi ficando.
+            Virou presença constante.
+            Virou a notificação que eu espero.
+            Virou a parte do meu dia que eu não pulo.
+            Virou meu pensamento quando eu estou bem… e meu conforto quando eu estou cansado.
+            E eu não tô falando de paixão de momento.
+            Eu tô falando de algo que cria raiz.
           </p>
 
           <p>
-            Eu gosto do seu jeito… do seu brilho… da sua fé.
-            E eu vou ser bem honesto: tem algo muito bonito em você ser tão “você”.
-            Uma mistura de força e delicadeza, de leveza e profundidade.
-            Eu te admiro por quem você é — não só pelo que eu sinto quando você está perto,
-            mas pelo que você desperta em mim quando eu estou longe também.
+            Eu gosto do seu jeito… do seu coração… da sua fé.
+            Eu vejo o quanto você leva Deus a sério,
+            e isso só me faz te respeitar mais e querer fazer tudo do jeito certo.
+            Porque eu não quero ser mais um capítulo passageiro na sua vida.
+            Eu quero ser alguém que soma, que cuida, que honra.
           </p>
 
           <p>
-            Eu lembro do nosso cinema no dia <strong>07/02</strong> como se fosse um detalhe simples,
-            mas não foi.
-            Teve um momento ali em que eu percebi que eu não queria só “viver um rolê com você”.
-            Eu queria ter você nos meus dias.
-            Nos dias bons, nos dias comuns, nos dias em que o mundo pesa…
-            e nos dias em que a gente só quer rir de qualquer besteira.
+            Eu também não esqueci — e nem vou — do dia <strong>30/12/2025 às 00:08</strong>.
+            O minuto em que eu mandei a primeira mensagem.
+            Eu não tinha como saber, mas naquele instante eu tava iniciando uma história que mudou a forma como
+            eu enxergo o futuro.
+            E toda vez que eu penso nisso eu sinto uma gratidão estranha e bonita, como se Deus tivesse
+            me dado um empurrãozinho silencioso: “vai”.
           </p>
 
           <p>
-            E eu amo o fato de que existe uma data muito clara do “começo”:
-            <strong>30/12/2025 às 00:08</strong>.
-            O minuto em que eu enviei a primeira mensagem.
-            E é engraçado… porque eu não tinha como saber,
-            mas naquele instante eu estava abrindo uma porta que mudou a minha forma de olhar pro futuro.
+            E o nosso cinema no dia <strong>07/02</strong>…
+            Aquilo não foi só um rolê.
+            Teve um momento ali em que eu percebi com uma clareza quase assustadora:
+            eu não queria só viver coisas com você.
+            Eu queria viver <strong>com você</strong>.
+            Eu queria que os dias fossem nossos.
+            Que as pequenas coisas tivessem a sua mão no meio.
           </p>
 
           <p>
-            Victoria, eu não quero te impressionar com palavras bonitas.
-            Eu quero te tocar com verdade.
-            Então eu vou dizer do jeito mais simples e mais inteiro que eu consigo:
-            <strong>eu gosto de você</strong>.
-            Gosto num nível que não é só “paixão do momento”.
-            É vontade de cuidar. É vontade de somar. É vontade de estar.
+            Victoria, eu não tô aqui pra te prometer um conto perfeito.
+            Eu tô aqui pra te oferecer algo melhor: <strong>verdade</strong>.
+            Presença.
+            Intenção.
+            Um amor que não foge na primeira dificuldade,
+            que não brinca com o que é sagrado,
+            que te respeita e te escolhe — inclusive quando ninguém tá olhando.
           </p>
 
           <p>
-            E porque você é uma pessoa de fé… eu também quero ser respeitoso com isso.
-            Eu não sei explicar tudo o que acontece na vida,
-            mas eu acredito que algumas conexões não são por acaso.
-            E, se Deus permite encontros que acalmam e também transformam,
-            então eu só consigo agradecer por você ter cruzado o meu caminho.
+            Eu quero te assumir com orgulho.
+            Quero te proteger com atitude.
+            Quero te fazer sentir segura.
+            Quero ser abrigo e também ser paz.
+            E, sendo bem direto: <strong>eu quero você</strong>.
+            Não só perto — <strong>comigo</strong>.
           </p>
 
           <p>
-            Eu quero fazer as coisas do jeito certo.
-            Do jeito bonito.
-            Do jeito que você merece.
-            Eu quero ser alguém que te aproxima do bem, da paz,
-            e que te dá segurança — não só no que eu digo, mas no que eu faço.
-          </p>
-
-          <p>
-            Se você me permitir, eu quero continuar escrevendo com você.
-            Sem pressa, mas com intenção.
-            Com respeito, mas também com coragem.
-            Com carinho, mas com presença.
+            Se for da vontade de Deus, eu queria construir isso do jeito bonito:
+            com respeito, com cuidado, com compromisso e com amor.
+            Eu não quero viver você pela metade.
+            Eu quero viver você por inteiro.
           </p>
 
           <p class="muted" style="margin-top:16px">
-            (E agora… eu preciso dizer a parte que eu estou segurando desde o começo.)
+            (Agora vem a parte que eu esperei até o final… porque eu precisava que você chegasse aqui sentindo tudo.)
           </p>
 
           <p style="margin-top:14px">
-            <strong>Com carinho,</strong><br/>
-            — <span class="muted">[Gustavo seu Felix]</span>
+            <strong>Com amor,</strong><br/>
+            — <span class="muted">Gustavo</span>
           </p>
         </div>
 
@@ -252,6 +253,7 @@
       <div class="center">
         <p class="big">
           Victoria… <br/>
+          eu quero fazer isso do jeito certo. <br/>
           <strong>você aceita namorar comigo?</strong> <span class="heart">❤️</span>
         </p>
 
@@ -261,7 +263,7 @@
         </div>
 
         <p class="footer muted" id="simMsg" style="display:none;">
-          AAAAAA 💘 Agora você me deve um abraço (urgente).
+          AAAAAA 💘 Agora eu vou cuidar de você do jeito que você merece.
         </p>
       </div>
     </div>
@@ -322,7 +324,7 @@
         lock.classList.add('hidden');
         content.classList.remove('hidden');
 
-        // animação de carta abrindo (reinicia se necessário)
+        // animação de carta abrindo
         if(letterCard){
           letterCard.classList.remove('reveal');
           void letterCard.offsetWidth;
@@ -354,7 +356,6 @@
     document.getElementById('btnFechar').onclick = () => modal.classList.remove('open');
     document.getElementById('btnSim').onclick = () => {
       document.getElementById('simMsg').style.display = 'block';
-      // intensifica corações por alguns segundos
       startHearts(3);
       setTimeout(()=> startHearts(1), 4500);
     };
