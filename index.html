@@ -1,190 +1,396 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Victoria 💌</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Victoria 💌</title>
+  <style>
+    :root{
+      --bg:#0b0b10; --card:#12121a; --txt:#f3f3f7; --muted:#b7b7c9;
+      --accent:#ff4d8d; --accent2:#ff8bb3;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: radial-gradient(1200px 700px at 20% 10%, #1b1230 0%, var(--bg) 60%);
+      color:var(--txt);
+      overflow-x:hidden;
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:28px 16px 70px;}
+    .badge{
+      display:inline-flex;gap:10px;align-items:center;padding:10px 14px;border-radius:999px;
+      background: rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);color:var(--muted);
+    }
+    .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent);}
 
-<style>
-:root{--accent:#ff4d8d}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:radial-gradient(circle at top,#1b1230,#0b0b10);
-  color:white;
-  overflow-x:hidden;
-}
-.wrap{max-width:900px;margin:auto;padding:30px 15px}
-.card{
-  background:rgba(255,255,255,.05);
-  padding:30px;
-  border-radius:20px;
-  backdrop-filter:blur(10px);
-  box-shadow:0 0 40px rgba(255,0,100,.25);
-}
-h1,h2{margin-top:0;text-align:center}
-button{
-  background:var(--accent);
-  border:none;
-  padding:12px 20px;
-  border-radius:12px;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-}
-button:hover{opacity:.85}
-.hidden{display:none}
+    .card{
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      padding:20px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.25);
+    }
+    h1{font-size:34px;margin:18px 0 8px;}
+    .sub{color:var(--muted);margin:0 0 18px;line-height:1.5}
+    .muted{color:var(--muted)}
+    .letter{line-height:1.95;font-size:16.5px;}
+    .letter p{margin:12px 0;}
+    .divider{height:1px;background:rgba(255,255,255,.12);margin:16px 0;}
+    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+    button{
+      cursor:pointer;border:0;border-radius:12px;padding:11px 14px;font-weight:700;
+      background: rgba(255,255,255,.10); color:var(--txt);
+      border:1px solid rgba(255,255,255,.14);
+    }
+    button.primary{background: linear-gradient(135deg, var(--accent), var(--accent2)); color:#130812; border:0;}
+    button:hover{transform: translateY(-1px)}
+    .footer{margin-top:16px;font-size:13px;color:var(--muted);}
 
-.modal{
-  position:fixed;
-  inset:0;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  background:rgba(0,0,0,.8);
-}
-.modal.open{display:flex}
+    /* ===== Tela de senha + carta abrindo ===== */
+    .lock{min-height:100vh;display:grid;place-items:center;padding:18px;}
+    .lockCard{max-width:560px;width:100%;}
+    .field{display:flex;gap:10px;margin-top:12px;}
+    input{
+      flex:1;padding:12px 12px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.25); color:var(--txt);
+      outline:none;
+    }
+    .hidden{display:none!important;}
+    .shake{animation: shake .35s linear 1;}
+    @keyframes shake{
+      0%{transform:translateX(0)}
+      25%{transform:translateX(-8px)}
+      50%{transform:translateX(8px)}
+      75%{transform:translateX(-6px)}
+      100%{transform:translateX(0)}
+    }
 
-.heart{
-  position:fixed;
-  font-size:20px;
-  animation:floatUp linear forwards;
-}
-@keyframes floatUp{
-  from{transform:translateY(100vh);opacity:1}
-  to{transform:translateY(-10vh);opacity:0}
-}
-</style>
+    /* Efeito "carta abrindo" */
+    .reveal{
+      transform-origin: top center;
+      animation: openLetter .9s cubic-bezier(.2,.9,.2,1) forwards;
+    }
+    @keyframes openLetter{
+      0%{opacity:0; transform: translateY(18px) scale(.96) rotateX(18deg); filter: blur(2px);}
+      65%{opacity:1; transform: translateY(0) scale(1.01) rotateX(0deg); filter: blur(0);}
+      100%{opacity:1; transform: translateY(0) scale(1) rotateX(0deg); filter: blur(0);}
+    }
+
+    /* ===== Modal pedido ===== */
+    .modal{
+      position:fixed; inset:0; display:none; place-items:center; padding:18px;
+      background: rgba(0,0,0,.72); z-index:50;
+    }
+    .modal.open{display:grid;}
+    .modalCard{
+      max-width:720px;width:100%;border-radius:18px;padding:18px;
+      background:#12121a;border:1px solid rgba(255,255,255,.14);
+    }
+    .big{font-size:22px;line-height:1.6;margin:0;}
+    .heart{color:var(--accent)}
+    .center{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;}
+    .yes{font-size:18px;padding:12px 18px}
+
+    /* ===== Corações subindo no fundo ===== */
+    .heart-float{
+      position:fixed; left:0; top:0;
+      font-size:18px; pointer-events:none; opacity:.9; z-index:5;
+      animation: floatUp linear forwards;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,.35));
+    }
+    @keyframes floatUp{
+      from{ transform: translate(var(--x), 110vh) scale(var(--s)) rotate(0deg); opacity:0; }
+      10%{ opacity: .95; }
+      to{ transform: translate(var(--x2), -15vh) scale(var(--s)) rotate(var(--r)); opacity:0; }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div class="wrap" id="login">
-  <div class="card" style="max-width:400px;margin:auto;text-align:center">
-    <h2>Conteúdo privado 💌</h2>
-    <input type="password" id="senha" placeholder="Digite a senha"
-      style="padding:10px;border-radius:10px;border:none;margin-top:10px;width:100%">
-    <br><br>
-    <button onclick="verificar()">Abrir</button>
-    <p id="erro" style="color:#ff7aa8;display:none">Senha incorreta 😳</p>
-  </div>
-</div>
+  <!-- TELA DE SENHA -->
+  <div class="lock" id="lock">
+    <div class="wrap lockCard">
+      <div class="card">
+        <div class="badge"><span class="dot"></span> Conteúdo privado</div>
+        <h1>Pra Victoria <span class="heart">💌</span></h1>
+        <p class="sub">
+          Digite a senha pra abrir a carta.<br/>
+          <span class="muted">Dica: eu fiz isso pensando em você de verdade.</span>
+        </p>
 
-<!-- CONTEUDO -->
-<div class="wrap hidden" id="conteudo">
+        <div class="field" id="field">
+          <input id="pass" type="password" placeholder="Senha" autocomplete="off" />
+          <button class="primary" id="btnOpen">Abrir</button>
+        </div>
 
-  <div class="card">
-    <h1>Victoria 💌</h1>
-
-    <!-- CONTADOR -->
-    <p id="contador" style="color:#ff9ac4;font-weight:bold;text-align:center"></p>
-
-    <p>
-    A gente se conheceu no colégio… mas parece que o destino resolveu agir mesmo
-    quando eu respondi seu story falando de óleo de cozinha pra passar no rosto KKKKK.
-    </p>
-
-    <p>
-    Desde aquele momento você virou presença constante.
-    Meu pensamento favorito.
-    Meu BB.
-    Minha Hyun.
-    </p>
-
-    <p>
-    Desde 30/12/2025 às 00:08, quando eu enviei a primeira mensagem,
-    algo começou ali.
-    E desde então cada conversa, cada detalhe, cada momento
-    só fez eu ter mais certeza do que eu sinto.
-    </p>
-
-    <h2>Você aceita namorar comigo? ❤️</h2>
-
-    <div style="text-align:center">
-      <button onclick="abrirPedido()">Chegou a parte importante…</button>
+        <p class="footer" id="err" style="display:none; color:#ff7aa8;">Senha incorreta. Tenta de novo, BB 😳</p>
+      </div>
     </div>
   </div>
 
-</div>
+  <!-- CONTEÚDO -->
+  <div class="hidden" id="content">
+    <div class="wrap">
+      <div class="badge"><span class="dot"></span> Valentine’s Day • feito pra você</div>
+      <h1>Victoria <span class="heart">💌</span></h1>
+      <p class="sub">Lê com calma. Eu queria que isso tivesse a sua cara.</p>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="card" style="text-align:center">
-    <h2>Victoria…</h2>
-    <p>Você aceita namorar comigo? ❤️</p>
-    <button onclick="aceitou()">SIM!</button>
-    <br><br>
-    <button onclick="fechar()">Calma 😳</button>
-    <p id="final" class="hidden">AAAAA 💘 Agora é oficial!</p>
+      <section class="card reveal" id="letterCard">
+        <p class="muted" id="counter" style="margin:0 0 10px; font-weight:700;"></p>
+        <div class="divider"></div>
+
+        <div class="letter">
+          <p><strong>Victoria,</strong></p>
+
+          <p>
+            Eu fiquei tentando escolher um começo bonito pra isso… mas o começo mais verdadeiro é admitir
+            que eu não escrevi essa carta porque “hoje é uma data especial”. Eu escrevi porque <strong>você</strong> virou especial.
+            E eu cansei de fingir que dá pra guardar isso só pra mim.
+          </p>
+
+          <p>
+            A gente se conhece do colégio — e mesmo assim é como se eu tivesse te descoberto agora.
+            E é impossível eu não rir lembrando do gatilho oficial de tudo:
+            aquele seu story falando de <strong>óleo de cozinha pra passar no rosto</strong> KKKKK.
+            Eu respondi no impulso, mas a verdade é que, naquele momento, alguma coisa em mim pensou:
+            “pronto… é ela”.
+          </p>
+
+          <p>
+            Desde então, você foi virando presença constante.
+            Você virou aquela conversa que eu espero, aquele “bom dia” que muda o meu humor,
+            aquele tipo de pessoa que traz paz e ao mesmo tempo deixa o coração acelerado.
+            E é muito doido como o simples fato de ver seu nome já faz meu dia ficar diferente.
+          </p>
+
+          <p>
+            Eu gosto do seu jeito… do seu brilho… da sua fé.
+            E eu vou ser bem honesto: tem algo muito bonito em você ser tão “você”.
+            Uma mistura de força e delicadeza, de leveza e profundidade.
+            Eu te admiro por quem você é — não só pelo que eu sinto quando você está perto,
+            mas pelo que você desperta em mim quando eu estou longe também.
+          </p>
+
+          <p>
+            Eu lembro do nosso cinema no dia <strong>07/12</strong> como se fosse um detalhe simples,
+            mas não foi.
+            Teve um momento ali em que eu percebi que eu não queria só “viver um rolê com você”.
+            Eu queria ter você nos meus dias.
+            Nos dias bons, nos dias comuns, nos dias em que o mundo pesa…
+            e nos dias em que a gente só quer rir de qualquer besteira.
+          </p>
+
+          <p>
+            E eu amo o fato de que existe uma data muito clara do “começo”:
+            <strong>30/12/2025 às 00:08</strong>.
+            O minuto em que eu enviei a primeira mensagem.
+            E é engraçado… porque eu não tinha como saber,
+            mas naquele instante eu estava abrindo uma porta que mudou a minha forma de olhar pro futuro.
+          </p>
+
+          <p>
+            Victoria, eu não quero te impressionar com palavras bonitas.
+            Eu quero te tocar com verdade.
+            Então eu vou dizer do jeito mais simples e mais inteiro que eu consigo:
+            <strong>eu gosto de você</strong>.
+            Gosto num nível que não é só “paixão do momento”.
+            É vontade de cuidar. É vontade de somar. É vontade de estar.
+          </p>
+
+          <p>
+            E porque você é uma pessoa de fé… eu também quero ser respeitoso com isso.
+            Eu não sei explicar tudo o que acontece na vida,
+            mas eu acredito que algumas conexões não são por acaso.
+            E, se Deus permite encontros que acalmam e também transformam,
+            então eu só consigo agradecer por você ter cruzado o meu caminho.
+          </p>
+
+          <p>
+            Eu quero fazer as coisas do jeito certo.
+            Do jeito bonito.
+            Do jeito que você merece.
+            Eu quero ser alguém que te aproxima do bem, da paz,
+            e que te dá segurança — não só no que eu digo, mas no que eu faço.
+          </p>
+
+          <p>
+            Se você me permitir, eu quero continuar escrevendo com você.
+            Sem pressa, mas com intenção.
+            Com respeito, mas também com coragem.
+            Com carinho, mas com presença.
+          </p>
+
+          <p class="muted" style="margin-top:16px">
+            (E agora… eu preciso dizer a parte que eu estou segurando desde o começo.)
+          </p>
+
+          <p style="margin-top:14px">
+            <strong>Com carinho,</strong><br/>
+            — <span class="muted">[coloque seu nome aqui]</span>
+          </p>
+        </div>
+
+        <div class="btns">
+          <button class="primary" id="btnPedido">Chegou a parte importante…</button>
+          <button id="btnCopy">Copiar link</button>
+        </div>
+
+        <div class="footer">
+          Dica: manda o link pra ela e manda a senha separada. Fica mais “privado”.
+        </div>
+      </section>
+    </div>
   </div>
-</div>
 
-<script>
+  <!-- MODAL PEDIDO -->
+  <div class="modal" id="modal">
+    <div class="modalCard">
+      <div class="center">
+        <p class="big">
+          Victoria… <br/>
+          <strong>você aceita namorar comigo?</strong> <span class="heart">❤️</span>
+        </p>
 
-const SENHA = "BBHyun";
+        <div class="btns" style="justify-content:center">
+          <button class="primary yes" id="btnSim">SIM!</button>
+          <button id="btnFechar">Deixa eu respirar 😳</button>
+        </div>
 
-function verificar(){
-  if(document.getElementById("senha").value === SENHA){
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("conteudo").classList.remove("hidden");
-    iniciarCoracoes(1);
-  }else{
-    document.getElementById("erro").style.display="block";
-  }
-}
+        <p class="footer muted" id="simMsg" style="display:none;">
+          AAAAAA 💘 Agora você me deve um abraço (urgente).
+        </p>
+      </div>
+    </div>
+  </div>
 
-function abrirPedido(){
-  document.getElementById("modal").classList.add("open");
-}
+  <script>
+    // ====== CONFIG ======
+    const SENHA = "BBHyun"; // <- mude aqui se quiser
+    // ====================
 
-function fechar(){
-  document.getElementById("modal").classList.remove("open");
-}
+    // ===== Corações =====
+    let heartsInterval = null;
 
-function aceitou(){
-  document.getElementById("final").classList.remove("hidden");
-  iniciarCoracoes(3);
-}
+    function spawnHeart(){
+      const h = document.createElement("div");
+      h.className = "heart-float";
+      h.textContent = Math.random() < 0.85 ? "❤️" : "💖";
+      const x = Math.random() * 100;
+      const x2 = x + (Math.random()*14 - 7);
+      const s = 0.7 + Math.random()*0.9;
+      const r = (Math.random()*80 - 40) + "deg";
+      const dur = 6 + Math.random()*3;
 
-function iniciarCoracoes(intensidade){
-  setInterval(()=>{
-    for(let i=0;i<intensidade;i++){
-      const h=document.createElement("div");
-      h.className="heart";
-      h.innerHTML="❤️";
-      h.style.left=Math.random()*100+"vw";
-      h.style.animationDuration=(4+Math.random()*3)+"s";
+      h.style.setProperty("--x", x + "vw");
+      h.style.setProperty("--x2", x2 + "vw");
+      h.style.setProperty("--s", s);
+      h.style.setProperty("--r", r);
+      h.style.animationDuration = dur + "s";
+
       document.body.appendChild(h);
-      setTimeout(()=>h.remove(),7000);
+      setTimeout(()=> h.remove(), (dur*1000) + 200);
     }
-  },500);
-}
 
-// CONTADOR
-const inicio = new Date(2025,11,30,0,8,0);
+    function startHearts(level=1){
+      stopHearts();
+      heartsInterval = setInterval(()=>{
+        const n = Math.max(1, Math.floor(level));
+        for(let i=0;i<n;i++) spawnHeart();
+      }, 520);
+    }
+    function stopHearts(){
+      if(heartsInterval) clearInterval(heartsInterval);
+      heartsInterval = null;
+    }
 
-function atualizarContador(){
-  const agora = new Date();
-  let diff = agora - inicio;
-  if(diff<0) diff=0;
+    // ===== Lock =====
+    const lock = document.getElementById('lock');
+    const content = document.getElementById('content');
+    const pass = document.getElementById('pass');
+    const btnOpen = document.getElementById('btnOpen');
+    const err = document.getElementById('err');
+    const field = document.getElementById('field');
+    const letterCard = document.getElementById('letterCard');
 
-  const totalSeg = Math.floor(diff/1000);
-  const dias = Math.floor(totalSeg/(3600*24));
-  const horas = Math.floor((totalSeg%(3600*24))/3600);
-  const mins = Math.floor((totalSeg%3600)/60);
-  const segs = totalSeg%60;
+    function openIfOk() {
+      const val = (pass.value || "").trim();
+      if (val === SENHA) {
+        lock.classList.add('hidden');
+        content.classList.remove('hidden');
 
-  const el=document.getElementById("contador");
-  if(el){
-    el.textContent=`Desde 30/12/2025 00:08: ${dias} dias, ${horas}h ${mins}m ${segs}s 💘`;
-  }
-}
-setInterval(atualizarContador,1000);
-atualizarContador();
+        // animação de carta abrindo (reinicia se necessário)
+        if(letterCard){
+          letterCard.classList.remove('reveal');
+          void letterCard.offsetWidth;
+          letterCard.classList.add('reveal');
+        }
 
-</script>
+        // inicia corações
+        startHearts(1);
+
+        // contador
+        atualizarContador();
+        setInterval(atualizarContador, 1000);
+
+        window.scrollTo({top:0, behavior:"smooth"});
+      } else {
+        err.style.display = 'block';
+        field.classList.remove('shake');
+        void field.offsetWidth;
+        field.classList.add('shake');
+      }
+    }
+
+    btnOpen.onclick = openIfOk;
+    pass.addEventListener('keydown', (e) => { if (e.key === 'Enter') openIfOk(); });
+
+    // ===== Modal =====
+    const modal = document.getElementById('modal');
+    document.getElementById('btnPedido').onclick = () => modal.classList.add('open');
+    document.getElementById('btnFechar').onclick = () => modal.classList.remove('open');
+    document.getElementById('btnSim').onclick = () => {
+      document.getElementById('simMsg').style.display = 'block';
+      // intensifica corações por alguns segundos
+      startHearts(3);
+      setTimeout(()=> startHearts(1), 4500);
+    };
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+
+    // ===== Copiar link =====
+    document.getElementById('btnCopy').onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(location.href);
+        alert("Link copiado!");
+      } catch (e) {
+        prompt("Copia aqui:", location.href);
+      }
+    };
+
+    // ===== Contador desde 30/12/2025 00:08 =====
+    const inicio = new Date(2025, 11, 30, 0, 8, 0); // mês 11 = dezembro
+    function atualizarContador(){
+      const agora = new Date();
+      let diff = agora - inicio;
+      if (diff < 0) diff = 0;
+
+      const totalSeg = Math.floor(diff / 1000);
+      const dias = Math.floor(totalSeg / (3600*24));
+      const horas = Math.floor((totalSeg % (3600*24)) / 3600);
+      const mins = Math.floor((totalSeg % 3600) / 60);
+      const segs = totalSeg % 60;
+
+      const el = document.getElementById("counter");
+      if (el){
+        el.textContent = `Desde 30/12/2025 00:08: ${dias} dias, ${horas}h ${mins}m ${segs}s 💘`;
+      }
+    }
+  </script>
 
 </body>
 </html>
