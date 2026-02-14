@@ -1,71 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Victoria 💌</title>
 
 <style>
-body {
-    margin:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#1e1e2f,#111);
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    text-align:center;
+:root{--accent:#ff4d8d}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:radial-gradient(circle at top,#1b1230,#0b0b10);
+  color:white;
+  overflow-x:hidden;
 }
-
-.container {
-    max-width:600px;
-    padding:30px;
-    background:#1a1a2a;
-    border-radius:20px;
-    box-shadow:0 0 30px rgba(255,0,100,0.3);
+.wrap{max-width:900px;margin:auto;padding:30px 15px}
+.card{
+  background:rgba(255,255,255,.05);
+  padding:30px;
+  border-radius:20px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 40px rgba(255,0,100,.25);
 }
-
-input {
-    padding:10px;
-    border-radius:10px;
-    border:none;
-    margin-top:15px;
+h1,h2{margin-top:0;text-align:center}
+button{
+  background:var(--accent);
+  border:none;
+  padding:12px 20px;
+  border-radius:12px;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
 }
+button:hover{opacity:.85}
+.hidden{display:none}
 
-button {
-    padding:10px 20px;
-    border:none;
-    border-radius:10px;
-    margin-top:15px;
-    background:#ff4d8d;
-    color:white;
-    cursor:pointer;
+.modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,.8);
 }
+.modal.open{display:flex}
 
-.hidden {
-    display:none;
+.heart{
+  position:fixed;
+  font-size:20px;
+  animation:floatUp linear forwards;
+}
+@keyframes floatUp{
+  from{transform:translateY(100vh);opacity:1}
+  to{transform:translateY(-10vh);opacity:0}
 }
 </style>
 </head>
 
 <body>
 
-<div class="container" id="login">
+<!-- LOGIN -->
+<div class="wrap" id="login">
+  <div class="card" style="max-width:400px;margin:auto;text-align:center">
     <h2>Conteúdo privado 💌</h2>
-    <p>Digite a senha:</p>
-    <input type="password" id="senha">
-    <br>
+    <input type="password" id="senha" placeholder="Digite a senha"
+      style="padding:10px;border-radius:10px;border:none;margin-top:10px;width:100%">
+    <br><br>
     <button onclick="verificar()">Abrir</button>
-    <p id="erro" style="color:red; display:none;">Senha errada BB 😳</p>
+    <p id="erro" style="color:#ff7aa8;display:none">Senha incorreta 😳</p>
+  </div>
 </div>
 
-<div class="container hidden" id="conteudo">
-    <h2>Victoria 💌</h2>
+<!-- CONTEUDO -->
+<div class="wrap hidden" id="conteudo">
+
+  <div class="card">
+    <h1>Victoria 💌</h1>
+
+    <!-- CONTADOR -->
+    <p id="contador" style="color:#ff9ac4;font-weight:bold;text-align:center"></p>
 
     <p>
     A gente se conheceu no colégio… mas parece que o destino resolveu agir mesmo
-    naquele dia que eu respondi seu story falando de óleo de cozinha pra passar no rosto KKKKK.
+    quando eu respondi seu story falando de óleo de cozinha pra passar no rosto KKKKK.
     </p>
 
     <p>
@@ -76,32 +94,96 @@ button {
     </p>
 
     <p>
-    E eu nunca vou esquecer nosso cinema dia 07/12.
-    Não foi só um dia.
-    Foi o começo de algo que eu quero continuar escrevendo com você.
+    Desde 30/12/2025 às 00:08, quando eu enviei a primeira mensagem,
+    algo começou ali.
+    E desde então cada conversa, cada detalhe, cada momento
+    só fez eu ter mais certeza do que eu sinto.
     </p>
 
-    <h3>Você aceita namorar comigo? ❤️</h3>
+    <h2>Você aceita namorar comigo? ❤️</h2>
 
+    <div style="text-align:center">
+      <button onclick="abrirPedido()">Chegou a parte importante…</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="card" style="text-align:center">
+    <h2>Victoria…</h2>
+    <p>Você aceita namorar comigo? ❤️</p>
     <button onclick="aceitou()">SIM!</button>
-
-    <p id="final" class="hidden">Agora você me deve um abraço 😌💘</p>
+    <br><br>
+    <button onclick="fechar()">Calma 😳</button>
+    <p id="final" class="hidden">AAAAA 💘 Agora é oficial!</p>
+  </div>
 </div>
 
 <script>
-function verificar() {
-    var senha = document.getElementById("senha").value;
-    if(senha === "BBHyun"){
-        document.getElementById("login").classList.add("hidden");
-        document.getElementById("conteudo").classList.remove("hidden");
-    } else {
-        document.getElementById("erro").style.display="block";
-    }
+
+const SENHA = "BBHyun";
+
+function verificar(){
+  if(document.getElementById("senha").value === SENHA){
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("conteudo").classList.remove("hidden");
+    iniciarCoracoes(1);
+  }else{
+    document.getElementById("erro").style.display="block";
+  }
 }
 
-function aceitou() {
-    document.getElementById("final").classList.remove("hidden");
+function abrirPedido(){
+  document.getElementById("modal").classList.add("open");
 }
+
+function fechar(){
+  document.getElementById("modal").classList.remove("open");
+}
+
+function aceitou(){
+  document.getElementById("final").classList.remove("hidden");
+  iniciarCoracoes(3);
+}
+
+function iniciarCoracoes(intensidade){
+  setInterval(()=>{
+    for(let i=0;i<intensidade;i++){
+      const h=document.createElement("div");
+      h.className="heart";
+      h.innerHTML="❤️";
+      h.style.left=Math.random()*100+"vw";
+      h.style.animationDuration=(4+Math.random()*3)+"s";
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),7000);
+    }
+  },500);
+}
+
+// CONTADOR
+const inicio = new Date(2025,11,30,0,8,0);
+
+function atualizarContador(){
+  const agora = new Date();
+  let diff = agora - inicio;
+  if(diff<0) diff=0;
+
+  const totalSeg = Math.floor(diff/1000);
+  const dias = Math.floor(totalSeg/(3600*24));
+  const horas = Math.floor((totalSeg%(3600*24))/3600);
+  const mins = Math.floor((totalSeg%3600)/60);
+  const segs = totalSeg%60;
+
+  const el=document.getElementById("contador");
+  if(el){
+    el.textContent=`Desde 30/12/2025 00:08: ${dias} dias, ${horas}h ${mins}m ${segs}s 💘`;
+  }
+}
+setInterval(atualizarContador,1000);
+atualizarContador();
+
 </script>
 
 </body>
