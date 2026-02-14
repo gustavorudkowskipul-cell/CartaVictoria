@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victoria 💌</title>
+
+<style>
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#1e1e2f,#111);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+}
+
+.container {
+    max-width:600px;
+    padding:30px;
+    background:#1a1a2a;
+    border-radius:20px;
+    box-shadow:0 0 30px rgba(255,0,100,0.3);
+}
+
+input {
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    margin-top:15px;
+}
+
+button {
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    margin-top:15px;
+    background:#ff4d8d;
+    color:white;
+    cursor:pointer;
+}
+
+.hidden {
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="login">
+    <h2>Conteúdo privado 💌</h2>
+    <p>Digite a senha:</p>
+    <input type="password" id="senha">
+    <br>
+    <button onclick="verificar()">Abrir</button>
+    <p id="erro" style="color:red; display:none;">Senha errada BB 😳</p>
+</div>
+
+<div class="container hidden" id="conteudo">
+    <h2>Victoria 💌</h2>
+
+    <p>
+    A gente se conheceu no colégio… mas parece que o destino resolveu agir mesmo
+    naquele dia que eu respondi seu story falando de óleo de cozinha pra passar no rosto KKKKK.
+    </p>
+
+    <p>
+    Desde aquele momento você virou presença constante.
+    Meu pensamento favorito.
+    Meu BB.
+    Minha Hyun.
+    </p>
+
+    <p>
+    E eu nunca vou esquecer nosso cinema dia 07/12.
+    Não foi só um dia.
+    Foi o começo de algo que eu quero continuar escrevendo com você.
+    </p>
+
+    <h3>Você aceita namorar comigo? ❤️</h3>
+
+    <button onclick="aceitou()">SIM!</button>
+
+    <p id="final" class="hidden">Agora você me deve um abraço 😌💘</p>
+</div>
+
+<script>
+function verificar() {
+    var senha = document.getElementById("senha").value;
+    if(senha === "BBHyun"){
+        document.getElementById("login").classList.add("hidden");
+        document.getElementById("conteudo").classList.remove("hidden");
+    } else {
+        document.getElementById("erro").style.display="block";
+    }
+}
+
+function aceitou() {
+    document.getElementById("final").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
