@@ -6,7 +6,7 @@
   <title>Victoria 💌</title>
   <style>
     :root{
-      --bg:#0b0b10; --card:#12121a; --txt:#f3f3f7; --muted:#b7b7c9;
+      --bg:#0b0b10; --txt:#f3f3f7; --muted:#b7b7c9;
       --accent:#ff4d8d; --accent2:#ff8bb3;
     }
     *{box-sizing:border-box}
@@ -23,7 +23,6 @@
       background: rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);color:var(--muted);
     }
     .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent);}
-
     .card{
       background: rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.12);
@@ -35,7 +34,7 @@
     h1{font-size:34px;margin:18px 0 8px;}
     .sub{color:var(--muted);margin:0 0 18px;line-height:1.5}
     .muted{color:var(--muted)}
-    .letter{line-height:1.98;font-size:16.7px;}
+    .letter{line-height:1.95;font-size:16.6px;}
     .letter p{margin:12px 0;}
     .divider{height:1px;background:rgba(255,255,255,.12);margin:16px 0;}
     .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
@@ -74,12 +73,12 @@
       animation: openLetter .95s cubic-bezier(.2,.9,.2,1) forwards;
     }
     @keyframes openLetter{
-      0%{opacity:0; transform: translateY(18px) scale(.96) rotateX(18deg); filter: blur(2px);}
+      0%{opacity:0; transform: translateY(18px) scale(.97) rotateX(18deg); filter: blur(2px);}
       65%{opacity:1; transform: translateY(0) scale(1.01) rotateX(0deg); filter: blur(0);}
       100%{opacity:1; transform: translateY(0) scale(1) rotateX(0deg); filter: blur(0);}
     }
 
-    /* ===== Modal pedido ===== */
+    /* ===== Modal final (pedido suave / confirmação) ===== */
     .modal{
       position:fixed; inset:0; display:none; place-items:center; padding:18px;
       background: rgba(0,0,0,.72); z-index:50;
@@ -106,6 +105,22 @@
       10%{ opacity: .95; }
       to{ transform: translate(var(--x2), -15vh) scale(var(--s)) rotate(var(--r)); opacity:0; }
     }
+
+    /* pequena caixinha com contadores */
+    .counters{
+      display:grid;
+      gap:10px;
+      margin:0 0 10px;
+    }
+    .pill{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: var(--muted);
+      font-weight:700;
+    }
+    .pill strong{color:#ffd1e3}
   </style>
 </head>
 
@@ -119,7 +134,7 @@
         <h1>Pra Victoria <span class="heart">💌</span></h1>
         <p class="sub">
           Digite a senha pra abrir a carta.<br/>
-          <span class="muted">Prometo que vale a pena ler até o final.</span>
+          <span class="muted">Prometo que é leve… e verdadeiro.</span>
         </p>
 
         <div class="field" id="field">
@@ -135,146 +150,126 @@
   <!-- CONTEÚDO -->
   <div class="hidden" id="content">
     <div class="wrap">
-      <div class="badge"><span class="dot"></span> Feito pra você • com coragem</div>
+      <div class="badge"><span class="dot"></span> Feito pra você • 16/02/2026</div>
       <h1>Victoria <span class="heart">💌</span></h1>
-      <p class="sub">Lê devagar. Eu coloquei verdade aqui dentro.</p>
+      <p class="sub">Lê com calma. Eu não quis impressionar… eu quis te abraçar com palavras.</p>
 
       <section class="card reveal" id="letterCard">
-        <p class="muted" id="counter" style="margin:0 0 10px; font-weight:800;"></p>
+        <div class="counters">
+          <div class="pill" id="cntMsg">Carregando…</div>
+          <div class="pill" id="cntNamoro">Carregando…</div>
+        </div>
         <div class="divider"></div>
 
         <div class="letter">
           <p><strong>Victoria,</strong></p>
 
           <p>
-            Eu fiquei tentando começar isso de um jeito bonito… mas eu não quero só bonito.
-            Eu quero verdadeiro. Eu quero inteiro. Eu quero que você sinta o peso bom do que eu tô dizendo.
-            Então aqui vai: <strong>eu não consigo mais fingir que você é “só” alguém que eu gosto</strong>.
-            Você virou um lugar dentro de mim.
+            Eu pensei muito antes de escrever isso de novo. E dessa vez eu não quero te impressionar.
+            Eu só quero ser verdadeiro.
+            Eu quero que você sinta paz lendo… não pressão.
           </p>
 
           <p>
-            A gente se conhece do colégio… e mesmo assim eu sinto como se eu tivesse te encontrado agora,
-            na fase em que a vida já não é brincadeira e a gente aprende a reconhecer o que é raro.
-            E é engraçado, porque o nosso “agora” começou de um jeito completamente aleatório:
-            aquele seu story falando de <strong>óleo de cozinha pra passar no rosto</strong> KKKKK.
-            Eu reagi no impulso, mas a verdade é que naquele momento eu senti uma coisa simples e forte:
-            “eu quero estar perto dela”.
+            A gente se conhece do colégio… mas parece que a nossa história começou de verdade
+            naquele momento completamente aleatório:
+            o seu story falando de <strong>óleo de cozinha pra passar no rosto</strong> KKKKK.
+            Eu reagi rindo, mas por dentro eu senti uma vontade muito simples:
+            “eu quero estar mais perto dela”.
           </p>
 
           <p>
-            E depois disso você foi ficando.
-            Virou presença constante.
-            Virou a notificação que eu espero.
-            Virou a parte do meu dia que eu não pulo.
-            Virou meu pensamento quando eu estou bem… e meu conforto quando eu estou cansado.
-            E eu não tô falando de paixão de momento.
-            Eu tô falando de algo que cria raiz.
+            E às <strong>00:08 do dia 30/12/2025</strong> eu mandei a primeira mensagem.
+            Eu não tinha como saber… mas aquele minuto virou um marco pra mim.
+            Foi o comecinho de uma fase que eu passei a esperar seu nome aparecer,
+            a gostar das nossas conversas e a te admirar cada vez mais.
           </p>
 
           <p>
-            Eu gosto do seu jeito… do seu coração… da sua fé.
-            Eu vejo o quanto você leva Deus a sério,
-            e isso só me faz te respeitar mais e querer fazer tudo do jeito certo.
-            Porque eu não quero ser mais um capítulo passageiro na sua vida.
-            Eu quero ser alguém que soma, que cuida, que honra.
+            Você foi ficando. Devagar. Leve. Natural.
+            Você virou a conversa que eu espero.
+            Virou o sorriso que aparece sem eu perceber.
+            Virou meu <strong>BB</strong>.
+            Virou minha <strong>Hyun</strong>.
           </p>
 
           <p>
-            Eu também não esqueci — e nem vou — do dia <strong>30/12/2025 às 00:08</strong>.
-            O minuto em que eu mandei a primeira mensagem.
-            Eu não tinha como saber, mas naquele instante eu tava iniciando uma história que mudou a forma como
-            eu enxergo o futuro.
-            E toda vez que eu penso nisso eu sinto uma gratidão estranha e bonita, como se Deus tivesse
-            me dado um empurrãozinho silencioso: “vai”.
+            E o cinema no dia <strong>07/02</strong> foi um daqueles momentos simples que ficam especiais.
+            Eu senti paz.
+            Eu senti que estar do seu lado fazia sentido.
           </p>
 
           <p>
-            E o nosso cinema no dia <strong>07/02</strong>…
-            Aquilo não foi só um rolê.
-            Teve um momento ali em que eu percebi com uma clareza quase assustadora:
-            eu não queria só viver coisas com você.
-            Eu queria viver <strong>com você</strong>.
-            Eu queria que os dias fossem nossos.
-            Que as pequenas coisas tivessem a sua mão no meio.
+            Eu gosto de você, Victoria.
+            Mas não é um gosto apressado.
+            Não é cobrança.
+            Não é peso.
+            É escolha.
+            E é uma escolha que eu faço com respeito, com intenção e com cuidado.
           </p>
 
           <p>
-            Victoria, eu não tô aqui pra te prometer um conto perfeito.
-            Eu tô aqui pra te oferecer algo melhor: <strong>verdade</strong>.
-            Presença.
-            Intenção.
-            Um amor que não foge na primeira dificuldade,
-            que não brinca com o que é sagrado,
-            que te respeita e te escolhe — inclusive quando ninguém tá olhando.
+            Eu admiro sua fé. Admiro o jeito que você leva Deus a sério.
+            E eu quero fazer tudo do jeito certo.
+            Se for da vontade de Deus, eu quero construir algo bonito com você —
+            um amor que soma, que traz paz, que aproxima do bem.
           </p>
 
           <p>
-            Eu quero te assumir com orgulho.
-            Quero te proteger com atitude.
-            Quero te fazer sentir segura.
-            Quero ser abrigo e também ser paz.
-            E, sendo bem direto: <strong>eu quero você</strong>.
-            Não só perto — <strong>comigo</strong>.
-          </p>
-
-          <p>
-            Se for da vontade de Deus, eu queria construir isso do jeito bonito:
-            com respeito, com cuidado, com compromisso e com amor.
-            Eu não quero viver você pela metade.
-            Eu quero viver você por inteiro.
+            E hoje, <strong>16/02/2026</strong>, eu só quero registrar uma coisa:
+            eu tenho orgulho de você… e eu tô feliz por estar aqui, do seu lado,
+            vivendo isso com calma e verdade.
           </p>
 
           <p class="muted" style="margin-top:16px">
-            (Agora vem a parte que eu esperei até o final… porque eu precisava que você chegasse aqui sentindo tudo.)
+            (Agora só falta uma coisa bem simples… mas que eu quero dizer do jeito certo.)
           </p>
 
           <p style="margin-top:14px">
-            <strong>Com amor,</strong><br/>
-            — <span class="muted">Gustavo</span>
+            <strong>Com carinho,</strong><br/>
+            — <span class="muted">Gustavo</span> 💘
           </p>
         </div>
 
         <div class="btns">
-          <button class="primary" id="btnPedido">Chegou a parte importante…</button>
+          <button class="primary" id="btnPedido">E então… posso te chamar de minha namorada? ❤️</button>
           <button id="btnCopy">Copiar link</button>
         </div>
 
         <div class="footer">
-          Dica: manda o link pra ela e manda a senha separada. Fica mais “privado”.
+          Dica: manda o link e a senha separada. Fica mais “só de vocês”.
         </div>
       </section>
     </div>
   </div>
 
-  <!-- MODAL PEDIDO -->
+  <!-- MODAL -->
   <div class="modal" id="modal">
     <div class="modalCard">
       <div class="center">
         <p class="big">
           Victoria… <br/>
-          eu quero fazer isso do jeito certo. <br/>
-          <strong>você aceita namorar comigo?</strong> <span class="heart">❤️</span>
+          <strong>hoje (16/02/2026) você deixa eu ser seu namorado oficialmente?</strong> <span class="heart">❤️</span>
         </p>
 
         <div class="btns" style="justify-content:center">
           <button class="primary yes" id="btnSim">SIM!</button>
-          <button id="btnFechar">Deixa eu respirar 😳</button>
+          <button id="btnFechar">Deixa eu ler de novo 😳</button>
         </div>
 
         <p class="footer muted" id="simMsg" style="display:none;">
-          AAAAAA 💘 Agora eu vou cuidar de você do jeito que você merece.
+          AAAAAA 💘 Então tá… agora é nós. Deus abençoe a gente.
         </p>
       </div>
     </div>
   </div>
 
   <script>
-    // ====== CONFIG ======
-    const SENHA = "BBHyun"; // <- mude aqui se quiser
-    // ====================
+    // ===== CONFIG =====
+    const SENHA = "BBHyun"; // mude se quiser
+    // ==================
 
-    // ===== Corações =====
+    // ===== Corações no fundo =====
     let heartsInterval = null;
 
     function spawnHeart(){
@@ -304,6 +299,7 @@
         for(let i=0;i<n;i++) spawnHeart();
       }, 520);
     }
+
     function stopHearts(){
       if(heartsInterval) clearInterval(heartsInterval);
       heartsInterval = null;
@@ -324,19 +320,17 @@
         lock.classList.add('hidden');
         content.classList.remove('hidden');
 
-        // animação de carta abrindo
+        // reinicia animação da carta abrindo
         if(letterCard){
           letterCard.classList.remove('reveal');
           void letterCard.offsetWidth;
           letterCard.classList.add('reveal');
         }
 
-        // inicia corações
         startHearts(1);
 
-        // contador
-        atualizarContador();
-        setInterval(atualizarContador, 1000);
+        atualizarContadores();
+        setInterval(atualizarContadores, 1000);
 
         window.scrollTo({top:0, behavior:"smooth"});
       } else {
@@ -373,22 +367,34 @@
       }
     };
 
-    // ===== Contador desde 30/12/2025 00:08 =====
-    const inicio = new Date(2025, 11, 30, 0, 8, 0); // mês 11 = dezembro
-    function atualizarContador(){
-      const agora = new Date();
-      let diff = agora - inicio;
-      if (diff < 0) diff = 0;
+    // ===== Contadores =====
+    // 1) Desde a primeira mensagem: 30/12/2025 00:08
+    const inicioMsg = new Date(2025, 11, 30, 0, 8, 0); // mês 11=dezembro
+    // 2) Desde o namoro oficial: 16/02/2026 00:00 (se quiser horário, me diga)
+    const inicioNamoro = new Date(2026, 1, 16, 0, 0, 0); // mês 1=fevereiro
 
+    function formatDiff(ms){
+      let diff = ms;
+      if (diff < 0) diff = 0;
       const totalSeg = Math.floor(diff / 1000);
       const dias = Math.floor(totalSeg / (3600*24));
       const horas = Math.floor((totalSeg % (3600*24)) / 3600);
       const mins = Math.floor((totalSeg % 3600) / 60);
       const segs = totalSeg % 60;
+      return `${dias}d ${horas}h ${mins}m ${segs}s`;
+    }
 
-      const el = document.getElementById("counter");
-      if (el){
-        el.textContent = `Desde 30/12/2025 00:08: ${dias} dias, ${horas}h ${mins}m ${segs}s 💘`;
+    function atualizarContadores(){
+      const agora = new Date();
+
+      const el1 = document.getElementById("cntMsg");
+      if(el1){
+        el1.innerHTML = `Desde a 1ª mensagem (<strong>30/12/2025 00:08</strong>): ${formatDiff(agora - inicioMsg)} 💬`;
+      }
+
+      const el2 = document.getElementById("cntNamoro");
+      if(el2){
+        el2.innerHTML = `Desde o nosso dia (<strong>16/02/2026</strong>): ${formatDiff(agora - inicioNamoro)} 💘`;
       }
     }
   </script>
